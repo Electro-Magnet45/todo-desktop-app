@@ -13,6 +13,7 @@ const Preload = ({ setHideFrame }) => {
       ipcRenderer.removeAllListeners("update_available");
       notification.classList.remove("hidden");
     });
+    ipcRenderer.on("update_unvailable", () => ipcRenderer.send("start_app"));
     ipcRenderer.on("upprogress", (event, value) => setProgress(value));
 
     return () => {

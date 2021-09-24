@@ -4,9 +4,6 @@ const path = require("path");
 const isDev = require("electron-is-dev");
 
 const windows = new Set();
-let close_timeout;
-let close_interval;
-let update_available = false;
 
 const createPreloader = () => {
   let preloader = new BrowserWindow({
@@ -32,18 +29,15 @@ const createPreloader = () => {
   preloader.once("ready-to-show", () => {
     preloader.focus();
     autoUpdater.checkForUpdates();
-    close_timeout = setTimeout(() => {
-      close_interval = setInterval(() => {
-        if (!update_available) preloader.close();
-      }, 1000);
-    }, 5000);
   });
   preloader.on("closed", () => {
-    clearTimeout(close_timeout);
-    clearInterval(close_interval);
     windows.delete(preloader);
     preloader = null;
     createWindow();
+  });
+
+  ipcMain.on("start_app", () => {
+    preloader.close();
   });
 };
 
@@ -101,6 +95,9 @@ app.on("activate", () => {
 
 autoUpdater.on("update-available", () => {
   win.webContents.send("update_available");
+});
+autoUpdater.on("update-not-available", () => {
+  win.webContents.send("update_unvailable");
 });
 autoUpdater.on("download-progress", (progressObj) => {
   let percent = Math.round(progressObj.percent);
