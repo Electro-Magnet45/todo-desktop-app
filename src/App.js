@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import { HashRouter, Switch, Route } from "react-router-dom";
+import { HashRouter, Route } from "react-router-dom";
 import FrameBar from "./FrameBar";
 import Preload from "./screens/Preload";
 import Home from "./screens/Home";
@@ -13,12 +13,10 @@ function App() {
       {!hideFrame && <FrameBar />}
       <div className="app_container">
         <HashRouter>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/preload">
-              <Preload setHideFrame={setHideFrame} />
-            </Route>
-          </Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/preload">
+            <Preload setHideFrame={setHideFrame} />
+          </Route>
         </HashRouter>
       </div>
     </div>
