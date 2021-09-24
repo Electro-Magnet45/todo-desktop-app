@@ -1,0 +1,40 @@
+.frameBar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  -webkit-app-region: drag;
+  user-select: none;
+}
+.frameBar_container,
+.frameBar-cont_btns,
+.frameBar-cont-btn_div {
+  display: flex;
+}
+.frameBar-cont_profile {
+  display: flex;
+}
+.frameBar-cont_profile svg {
+  height: 2rem;
+  margin: auto;
+}
+
+.frameBar-cont_btns {
+  padding: 1rem;
+  -webkit-app-region: no-drag;
+  margin-left: auto;
+}
+.frameBar-cont-btn_div {
+  border-radius: 5px;
+}
+.frameBar-cont-btn_div:nth-child(3):hover {
+  background: var(--back-colour);
+}
+.frameBar-cont-btn_div:nth-child(3):hover g {
+  fill: white;
+}
+.frameBar-cont-btn_div svg {
+  height: 1.2rem;
+  width: auto;
+  margin: auto 1rem;
+  cursor: pointer;
+}

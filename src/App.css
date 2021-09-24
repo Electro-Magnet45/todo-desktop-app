@@ -1,38 +1,15 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: "Varela Round";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""), url("./folder/VarelaRound-Regular.woff2") format("woff2");
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app {
+  --back-colour: linear-gradient(90deg, #efd5ff 0%, #7e85df 100%);
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.app_container {
+  background: var(--back-colour);
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  font-family: "Varela Round", sans-serif;
+  user-select: none;
 }

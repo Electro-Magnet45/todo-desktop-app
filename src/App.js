@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import { HashRouter, Switch, Route } from "react-router-dom";
+import FrameBar from "./FrameBar";
+import Preload from "./screens/Preload";
+import Home from "./screens/Home";
 
 function App() {
+  const [hideFrame, setHideFrame] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      {!hideFrame && <FrameBar />}
+      <div className="app_container">
+        <HashRouter>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/preload">
+              <Preload setHideFrame={setHideFrame} />
+            </Route>
+          </Switch>
+        </HashRouter>
+      </div>
     </div>
   );
 }
