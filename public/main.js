@@ -4,9 +4,9 @@ const path = require("path");
 const isDev = require("electron-is-dev");
 
 const windows = new Set();
-
+let preloader;
 const createPreloader = () => {
-  let preloader = new BrowserWindow({
+  preloader = new BrowserWindow({
     width: 300,
     height: 300,
     title: "Todo",
@@ -34,10 +34,6 @@ const createPreloader = () => {
     windows.delete(preloader);
     preloader = null;
     createWindow();
-  });
-
-  ipcMain.on("start_app", () => {
-    preloader.close();
   });
 };
 
@@ -95,9 +91,6 @@ app.on("activate", () => {
 
 autoUpdater.on("update-available", () => {
   win.webContents.send("update_available");
-});
-autoUpdater.on("update-not-available", () => {
-  win.webContents.send("update_unvailable");
 });
 autoUpdater.on("download-progress", (progressObj) => {
   let percent = Math.round(progressObj.percent);
