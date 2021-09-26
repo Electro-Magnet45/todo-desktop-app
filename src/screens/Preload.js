@@ -8,12 +8,15 @@ const Preload = ({ setHideFrame }) => {
 
   useEffect(() => {
     setHideFrame(true);
+    const notification = document.getElementById("notification");
+
     ipcRenderer.on("update_available", () => {
-      const notification = document.getElementById("notification");
       ipcRenderer.removeAllListeners("update_available");
       notification.classList.remove("hidden");
     });
-    ipcRenderer.on("upprogress", (event, value) => setProgress(value));
+    ipcRenderer.on("upprogress", (event, value) => {
+      setProgress(value);
+    });
 
     return () => {
       setHideFrame(false);
@@ -27,7 +30,7 @@ const Preload = ({ setHideFrame }) => {
         <h1>TODO</h1>
         <div className="updateNotify">
           <div id="notification" className="hidden">
-            <progress id="file" value={progress} max="100">
+            <progress value={progress} max="100">
               {progress}%
             </progress>
           </div>

@@ -27,9 +27,9 @@ const createPreloader = () => {
       ? "http://localhost:3000#/preload"
       : `file://${path.join(__dirname, "../build/index.html#preload")}`
   );
-  preloader.on("ready-to-show", () => {
+  preloader.once("ready-to-show", () => {
     preloader.focus();
-    autoUpdater.checkForUpdates();
+    autoUpdater.checkForUpdatesAndNotify();
   });
   preloader.on("closed", () => {
     windows.delete(preloader);
@@ -108,28 +108,14 @@ autoUpdater.on("update-available", () => {
   win.webContents.send("update_available");
 });
 autoUpdater.on("update-not-available", () => {
-  dialog.showMessageBox({
-    type: "none",
-    buttons: [],
-    defaultId: 0,
-    icon: "",
-    title: "Update Not Availabe",
-    message: "This is a Message",
-    detail: "This is extra Information",
-    checkboxLabel: "Checkbox",
-    checkboxChecked: false,
-    cancelId: 0,
-    noLink: false,
-    normalizeAccessKeys: false,
-  });
   setTimeout(() => {
     preloader.close();
   }, 1000);
 });
-autoUpdater.on("download-progress", (progressObj) => {
+/* autoUpdater.on("download-progress", (progressObj) => {
   let percent = Math.round(progressObj.percent);
   win.webContents.send("upprogress", percent);
-});
+}); */
 autoUpdater.on("update-downloaded", () => {
   dialog.showMessageBox({
     type: "none",
