@@ -108,6 +108,20 @@ autoUpdater.on("update-available", () => {
   win.webContents.send("update_available");
 });
 autoUpdater.on("update-not-available", () => {
+  dialog.showMessageBox({
+    type: "none",
+    buttons: [],
+    defaultId: 0,
+    icon: "",
+    title: "Update Not Availabe",
+    message: "This is a Message",
+    detail: "This is extra Information",
+    checkboxLabel: "Checkbox",
+    checkboxChecked: false,
+    cancelId: 0,
+    noLink: false,
+    normalizeAccessKeys: false,
+  });
   setTimeout(() => {
     preloader.close();
   }, 1000);
