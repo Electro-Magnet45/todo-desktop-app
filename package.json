@@ -1,6 +1,6 @@
 {
   "name": "todo",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "private": true,
   "repository": "https://github.com/Electro-Magnet45/todo-test.git",
   "dependencies": {
