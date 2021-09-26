@@ -26,7 +26,7 @@ const createPreloader = () => {
       ? "http://localhost:3000#/preload"
       : `file://${path.join(__dirname, "../build/index.html#preload")}`
   );
-  preloader.on("show", () => {
+  preloader.on("ready-to-show", () => {
     preloader.focus();
     autoUpdater.checkForUpdates();
   });
@@ -90,9 +90,11 @@ app.on("activate", () => {
 });
 
 autoUpdater.on("update-available", () => {
+  console.log("update-available");
   win.webContents.send("update_available");
 });
 autoUpdater.on("update-not-available", () => {
+  console.log("update-unavailable");
   setTimeout(() => {
     preloader.close();
   }, 1000);
