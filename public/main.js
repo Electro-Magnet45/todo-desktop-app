@@ -26,7 +26,7 @@ const createPreloader = () => {
       ? "http://localhost:3000#/preload"
       : `file://${path.join(__dirname, "../build/index.html#preload")}`
   );
-  preloader.once("ready-to-show", () => {
+  preloader.on("show", () => {
     preloader.focus();
     autoUpdater.checkForUpdates();
   });
