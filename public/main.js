@@ -90,12 +90,12 @@ app.on("activate", () => {
 });
 
 autoUpdater.on("update-available", () => {
-  console.log("update_available");
   win.webContents.send("update_available");
 });
 autoUpdater.on("update-not-available", () => {
-  console.log("update_unavailable");
-  preloader.close();
+  setTimeout(() => {
+    preloader.close();
+  }, 1000);
 });
 autoUpdater.on("download-progress", (progressObj) => {
   let percent = Math.round(progressObj.percent);
