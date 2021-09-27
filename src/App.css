@@ -9,6 +9,7 @@
 }
 .app_container {
   background: var(--back-colour);
+  height: 100vh;
   color: white;
   font-family: "Varela Round", sans-serif;
   user-select: none;

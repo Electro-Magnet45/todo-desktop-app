@@ -27,7 +27,7 @@
   border-radius: 5px;
 }
 .frameBar-cont-btn_div:nth-child(3):hover {
-  background: var(--back-colour);
+  background: red;
 }
 .frameBar-cont-btn_div:nth-child(3):hover g {
   fill: white;

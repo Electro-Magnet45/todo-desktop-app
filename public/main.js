@@ -5,6 +5,7 @@ const isDev = require("electron-is-dev");
 
 const windows = new Set();
 let preloader;
+let pretime;
 const createPreloader = () => {
   preloader = new BrowserWindow({
     width: 300,
@@ -28,12 +29,13 @@ const createPreloader = () => {
   );
   preloader.once("ready-to-show", () => {
     preloader.focus();
-    autoUpdater.checkForUpdates();
-  });
-  preloader.on("closed", () => {
-    windows.delete(preloader);
-    preloader = null;
-    createWindow();
+    if (!isDev) return autoUpdater.checkForUpdates();
+    pretime = setTimeout(() => {
+      preloader.close();
+      windows.delete(preloader);
+      preloader = null;
+      createWindow();
+    }, 3000);
   });
 };
 
@@ -50,6 +52,7 @@ const createWindow = () => {
     },
   });
   windows.add(win);
+  if (pretime) clearTimeout(pretime);
 
   win.loadURL(
     isDev
@@ -89,16 +92,19 @@ app.on("activate", () => {
   if (BrowserWindow.getAllWindows().length === 0) createPreloader();
 });
 
-autoUpdater.on("update-available", () => {
-  preloader.webContents.send("update_available");
-});
+autoUpdater.on("update-available", () =>
+  preloader.webContents.send("update_available")
+);
 autoUpdater.on("update-not-available", () => {
-  setTimeout(() => preloader.close(), 1000);
+  setTimeout(() => {
+    preloader.close();
+    windows.delete(preloader);
+    preloader = null;
+    createWindow();
+  }, 1000);
 });
 autoUpdater.on("download-progress", (progressObj) => {
   let percent = Math.round(progressObj.percent);
   preloader.webContents.send("upprogress", percent);
 });
-autoUpdater.on("update-downloaded", () => {
-  autoUpdater.quitAndInstall();
-});
+autoUpdater.on("update-downloaded", () => autoUpdater.quitAndInstall());

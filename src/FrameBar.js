@@ -12,7 +12,7 @@ const ipc = ipcRenderer;
 const FrameBar = () => {
   const [maximizeRes, setMaximizeRes] = useState("Maximize");
 
-  const miiniWindFunc = () => {
+  const miniWindFunc = () => {
     ipc.send("minimizeApp");
   };
   const maximizeRestoreFunc = () => {
@@ -37,7 +37,7 @@ const FrameBar = () => {
           <div
             className="frameBar-cont-btn_div"
             title="Minimize"
-            onClick={miiniWindFunc}
+            onClick={miniWindFunc}
           >
             <Mimimize_icon />
           </div>
