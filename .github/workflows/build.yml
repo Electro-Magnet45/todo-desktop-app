@@ -13,7 +13,7 @@ jobs:
           node-version: "14"
           cache: "npm"
       - name: install dependencies
-        run: npm install
+        run: npm ci
       - name: build react
         run: $env:CI=$false; npm run build;
       - name: publish app

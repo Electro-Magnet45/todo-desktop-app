@@ -2,7 +2,6 @@ const { app, BrowserWindow, ipcMain } = require("electron");
 const { autoUpdater } = require("electron-updater");
 const path = require("path");
 const isDev = require("electron-is-dev");
-const { dialog } = require("electron/main");
 
 const windows = new Set();
 let preloader;
@@ -29,7 +28,7 @@ const createPreloader = () => {
   );
   preloader.once("ready-to-show", () => {
     preloader.focus();
-    autoUpdater.checkForUpdatesAndNotify();
+    autoUpdater.checkForUpdates();
   });
   preloader.on("closed", () => {
     windows.delete(preloader);
@@ -91,67 +90,15 @@ app.on("activate", () => {
 });
 
 autoUpdater.on("update-available", () => {
-  dialog.showMessageBox({
-    type: "none",
-    buttons: [],
-    defaultId: 0,
-    icon: "",
-    title: "Update Availabe",
-    message: "This is a Message",
-    detail: "This is extra Information",
-    checkboxLabel: "Checkbox",
-    checkboxChecked: false,
-    cancelId: 0,
-    noLink: false,
-    normalizeAccessKeys: false,
-  });
-  win.webContents.send("update_available");
+  preloader.webContents.send("update_available");
 });
 autoUpdater.on("update-not-available", () => {
-  dialog.showMessageBox({
-    type: "none",
-    buttons: [],
-    defaultId: 0,
-    icon: "",
-    title: "Update Not Availabe",
-    message: "This is a Message",
-    detail: "This is extra Information",
-    checkboxLabel: "Checkbox",
-    checkboxChecked: false,
-    cancelId: 0,
-    noLink: false,
-    normalizeAccessKeys: false,
-  });
-  setTimeout(() => {
-    preloader.close();
-  }, 1000);
+  setTimeout(() => preloader.close(), 1000);
 });
-/* autoUpdater.on("download-progress", (progressObj) => {
+autoUpdater.on("download-progress", (progressObj) => {
   let percent = Math.round(progressObj.percent);
-  win.webContents.send("upprogress", percent);
-}); */
+  preloader.webContents.send("upprogress", percent);
+});
 autoUpdater.on("update-downloaded", () => {
-  dialog.showMessageBox({
-    type: "none",
-    buttons: [],
-    defaultId: 0,
-    icon: "",
-    title: "update-downloaded",
-    message: "This is a Message",
-    detail: "This is extra Information",
-    checkboxLabel: "Checkbox",
-    checkboxChecked: false,
-    cancelId: 0,
-    noLink: false,
-    normalizeAccessKeys: false,
-  });
-  try {
-    autoUpdater.quitAndInstall();
-    setTimeout(() => {
-      app.relaunch();
-      app.exit(0);
-    }, 6000);
-  } catch (e) {
-    dialog.showErrorBox("Error", "Failed to install updates");
-  }
+  autoUpdater.quitAndInstall();
 });

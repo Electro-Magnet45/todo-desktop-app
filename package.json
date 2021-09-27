@@ -1,8 +1,8 @@
 {
   "name": "todo",
-  "version": "0.1.19",
+  "version": "0.1.0",
   "private": true,
-  "repository": "https://github.com/Electro-Magnet45/todo-test.git",
+  "repository": "https://github.com/Electro-Magnet45/todo-test-app.git",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
@@ -28,6 +28,12 @@
     "gpush": "git push -u origin master",
     "commit-prj": "npm run gadd && git commit -m \"%npm_config_commitnm% skip-publish\" && npm run gpush",
     "publish-prj": "npm run gadd && git commit -m \"%npm_config_commitnm%\" && npm run gpush"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [
