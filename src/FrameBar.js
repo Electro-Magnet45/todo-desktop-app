@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./FrameBar.css";
-import { ReactComponent as Mimimize_icon } from "./folder/frame_minimize.svg";
-import { ReactComponent as Maximize_icon } from "./folder/frame_maximize.svg";
-import { ReactComponent as Restore_icon } from "./folder/frame_restore.svg";
-import { ReactComponent as Close_icon } from "./folder/frame_close.svg";
-import { ReactComponent as Profile_icon } from "./folder/frame_profile.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faWindowRestore,
+  faSquare,
+  faUser,
+} from "@fortawesome/free-regular-svg-icons";
+import { faTimes, faMinus } from "@fortawesome/free-solid-svg-icons";
 
 const { ipcRenderer } = window.require("electron");
 const ipc = ipcRenderer;
@@ -31,7 +33,7 @@ const FrameBar = () => {
     <div className="frameBar">
       <div className="frameBar_container">
         <div className="frameBar-cont_profile">
-          <Profile_icon />
+          <FontAwesomeIcon icon={faUser} />
         </div>
         <div className="frameBar-cont_btns">
           <div
@@ -39,21 +41,25 @@ const FrameBar = () => {
             title="Minimize"
             onClick={miniWindFunc}
           >
-            <Mimimize_icon />
+            <FontAwesomeIcon icon={faMinus} />
           </div>
           <div
             className="frameBar-cont-btn_div"
             title={maximizeRes}
             onClick={maximizeRestoreFunc}
           >
-            {maximizeRes === "Restore" ? <Maximize_icon /> : <Restore_icon />}
+            {maximizeRes === "Restore" ? (
+              <FontAwesomeIcon icon={faWindowRestore} />
+            ) : (
+              <FontAwesomeIcon icon={faSquare} />
+            )}
           </div>
           <div
             className="frameBar-cont-btn_div"
             title="Close"
             onClick={closeWindFunc}
           >
-            <Close_icon />
+            <FontAwesomeIcon icon={faTimes} />
           </div>
         </div>
       </div>

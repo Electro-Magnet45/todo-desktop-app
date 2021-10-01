@@ -4,13 +4,19 @@
   font-weight: 400;
   src: local(""), url("./folder/VarelaRound-Regular.woff2") format("woff2");
 }
+@font-face {
+  font-family: "Poppins";
+  font-size: normal;
+  font-weight: 300;
+  src: local(""), url("./folder/Poppins-Regular.woff2") format("woff2");
+}
 .app {
   --back-colour: linear-gradient(90deg, #efd5ff 0%, #7e85df 100%);
 }
 .app_container {
-  background: var(--back-colour);
-  height: 100vh;
   color: white;
-  font-family: "Varela Round", sans-serif;
   user-select: none;
+}
+.app_container ::selection {
+  background-color: aqua;
 }

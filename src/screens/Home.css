@@ -3,4 +3,70 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: "Varela Round", sans-serif;
+  background: var(--back-colour);
+  min-height: 100vh;
+}
+
+.home-cont-1_form {
+  position: sticky;
+  top: 0;
+  margin-bottom: 5rem;
+}
+.home-cont-1_form,
+.home-cont-1-form_1 {
+  display: flex;
+  align-items: center;
+}
+
+.home-cont-1-form_1 {
+  position: relative;
+}
+.home-cont-1_form input,
+.home-cont-1_form select {
+  border: none;
+  border-radius: 15px;
+  padding: 0.6rem 1rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.3rem;
+}
+.home-cont-1_form input {
+  width: 30vw;
+  margin: 1rem 0;
+  padding-right: 3.2rem;
+}
+.home-cont-1-form_icon {
+  background-color: #7e85df;
+  padding: 0.6rem 1rem;
+  margin: 1rem 0;
+  vertical-align: 0;
+  border-radius: 15px;
+  position: absolute;
+  right: 0.2rem;
+  cursor: pointer;
+  transition: all 250ms ease;
+}
+.home-cont-1-form_icon:hover {
+  background-color: white;
+  color: #7e85df;
+}
+.home-cont-1_form select {
+  width: 15vw;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+.home-cont-1-form_icon.add_icon {
+  pointer-events: none;
+  background-color: #7e85df;
+  color: white;
+}
+
+.home-cont_todos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.home-cont_todos > h1 {
+  font-size: 4rem;
+  color: #efd5ff;
 }

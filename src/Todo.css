@@ -1,0 +1,60 @@
+.todo {
+  margin: 1rem 0;
+}
+.todo_container {
+  display: flex;
+  background-color: white;
+  color: black;
+  max-width: 35vw;
+  border-radius: 20px;
+  font-family: "Poppins", sans-serif;
+}
+.todo-cont_content {
+  padding: 1rem;
+  max-width: 70%;
+  margin-right: 1rem;
+  user-select: text !important;
+  transition: all 0.5s ease;
+}
+.todo-cont_content h4 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.todo-cont_icons {
+  margin-left: auto;
+  color: white;
+  display: flex;
+}
+.todo-icons-core {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 250ms ease;
+}
+.todo-icons-core svg {
+  margin: 0 1rem;
+  pointer-events: none;
+}
+.todo-icons-core:hover {
+  z-index: 1;
+  transform: scale(1.22);
+}
+.todo-icons-core.check {
+  background-color: #0bd4a2;
+}
+.todo-icons-core.check:hover {
+  color: #0bd4a2;
+  background-color: white;
+}
+.todo-icons-core.trash {
+  background-color: red;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.todo-icons-core.trash:hover {
+  color: red;
+  background-color: white;
+}

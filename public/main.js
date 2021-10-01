@@ -5,7 +5,6 @@ const isDev = require("electron-is-dev");
 
 const windows = new Set();
 let preloader;
-let pretime;
 const createPreloader = () => {
   preloader = new BrowserWindow({
     width: 300,
@@ -30,7 +29,7 @@ const createPreloader = () => {
   preloader.once("ready-to-show", () => {
     preloader.focus();
     if (!isDev) return autoUpdater.checkForUpdates();
-    pretime = setTimeout(() => {
+    setTimeout(() => {
       preloader.close();
       windows.delete(preloader);
       preloader = null;
@@ -52,7 +51,6 @@ const createWindow = () => {
     },
   });
   windows.add(win);
-  if (pretime) clearTimeout(pretime);
 
   win.loadURL(
     isDev
@@ -82,7 +80,7 @@ const createWindow = () => {
   });
 };
 
-app.on("ready", createPreloader);
+app.on("ready", () => setTimeout(createPreloader, 300));
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();

@@ -14,8 +14,8 @@
   display: flex;
 }
 .frameBar-cont_profile svg {
-  height: 2rem;
-  margin: auto;
+  font-size: 1.5rem;
+  margin: auto 1rem;
 }
 
 .frameBar-cont_btns {
@@ -29,8 +29,8 @@
 .frameBar-cont-btn_div:nth-child(3):hover {
   background: red;
 }
-.frameBar-cont-btn_div:nth-child(3):hover g {
-  fill: white;
+.frameBar-cont-btn_div:nth-child(3):hover svg {
+  color: white;
 }
 .frameBar-cont-btn_div svg {
   height: 1.2rem;
