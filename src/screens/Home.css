@@ -12,6 +12,7 @@
   position: sticky;
   top: 0;
   margin-bottom: 5rem;
+  z-index: 2;
 }
 .home-cont-1_form,
 .home-cont-1-form_1 {
@@ -51,7 +52,7 @@
   color: #7e85df;
 }
 .home-cont-1_form select {
-  width: 15vw;
+  width: 17vw;
   margin-left: 1rem;
   cursor: pointer;
 }

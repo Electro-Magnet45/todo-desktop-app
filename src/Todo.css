@@ -1,6 +1,16 @@
 .todo {
   margin: 1rem 0;
+  padding: 3px;
+  border-radius: 20px;
 }
+.todo.completed .todo-cont_content {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+.todo.completed {
+  background: #0bd4a2;
+}
+
 .todo_container {
   display: flex;
   background-color: white;
@@ -48,6 +58,7 @@
 .todo-icons-core.check:hover {
   color: #0bd4a2;
   background-color: white;
+  border-radius: 20px;
 }
 .todo-icons-core.trash {
   background-color: red;
@@ -57,4 +68,5 @@
 .todo-icons-core.trash:hover {
   color: red;
   background-color: white;
+  border-radius: 20px;
 }
